@@ -3,51 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lihle Mandisa Lungwase | Portfolio</title>
 
-    <!-- Google Fonts -->
+    <title>Lihle Mandisa Lungwase — Software Developer Portfolio</title>
+
+    <meta
+      name="description"
+      content="Portfolio of Lihle Mandisa Lungwase, ICT Application Development graduate building efficient, user-focused web and mobile apps with C#, ASP.NET MVC, and JavaScript."
+    />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Fraunces:ital,wght@1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,wght@1,400;1,500&display=swap"
       rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/lucide-static@latest/font/lucide.css"
     />
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <section id="hero" class="section hero">
       <div class="hero-inner">
-        <!-- Availability Pill -->
-        <a href="#contact" class="pill pill-clickable">
-          🚀 Available for tech-related opportunities
-        </a>
+        <div class="pill fade-up">
+          ✦ Available any tech related opportunities ✦
+        </div>
 
-        <!-- Name -->
-        <h1>
-          Lihle Mandisa <br />
+        <h1 class="fade-up">
+          Lihle Mandisa<br />
           <span class="serif gradient">Lungwase.</span>
         </h1>
 
-        <!-- Title -->
-        <p class="hero-sub">
+        <p class="hero-sub fade-up">
           Software Developer · ICT Application Development Graduate
         </p>
 
-        <!-- Description -->
-        <p class="hero-desc">
+        <p class="hero-desc fade-up">
           Crafting efficient, user-focused web and mobile applications with
           <strong>C#</strong>, <strong>ASP.NET MVC</strong>, and
           <strong>JavaScript</strong>.
         </p>
 
-        <!-- Buttons -->
-        <div class="hero-cta">
+        <div class="hero-cta fade-up">
           <a href="#projects" class="btn btn-primary">View Projects ↓</a>
-          <a href="#contact" class="btn btn-ghost">Contact Me</a>
+          <a href="#contact" class="btn btn-ghost">✉ Contact Me</a>
+          <a href="cv.pdf" target="_blank" rel="noopener" class="btn btn-ghost"
+            >⬇ Download CV</a
+          >
+        </div>
+
+        <div class="scroll-indicator fade-up">
+          <a href="#about">SCROLL<span></span></a>
         </div>
       </div>
     </section>
+
     <!-- ABOUT -->
     <section id="about" class="section">
       <div class="big-num">01</div>
@@ -70,6 +88,69 @@
             software that's a joy to maintain. Currently seeking junior
             developer opportunities to grow with a forward-thinking team.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="big-num">02</div>
+
+      <div class="container">
+        <p class="eyebrow fade-up">Skills</p>
+
+        <h2 class="fade-up">
+          Tools I <span class="serif gradient">build with.</span>
+        </h2>
+
+        <div class="skills-grid">
+          <div class="skill-card fade-up">
+            <div class="skill-icon">⚡</div>
+            <h3>C#</h3>
+            <p>OOP, LINQ, async patterns</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-icon">🌐</div>
+            <h3>ASP.NET MVC</h3>
+            <p>Server-rendered web apps</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-icon">🧩</div>
+            <h3>JavaScript</h3>
+            <p>ES6+, DOM, fetch API</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-icon">🎨</div>
+            <h3>HTML & CSS</h3>
+            <p>Semantic, responsive UIs</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-icon">🗄️</div>
+            <h3>SQL Server</h3>
+            <p>Queries, joins, schemas</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-icon">📱</div>
+            <h3>Mobile Dev</h3>
+            <p>Cross-platform basics</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-icon">🔧</div>
+            <h3>Git & GitHub</h3>
+            <p>Version control workflows</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-icon">🚀</div>
+            <h3>Netlify</h3>
+            <p>Deployments & CI</p>
+          </div>
         </div>
       </div>
     </section>
