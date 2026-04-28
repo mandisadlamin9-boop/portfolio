@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.pill {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #eee;
+}
+
+.pill-clickable:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.btn {
+  padding: 10px 20px;
+  margin: 5px;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 20px;
+}
+
+.btn-primary {
+  background: black;
+  color: white;
+}
+
+.btn-ghost {
+  border: 1px solid black;
+}
