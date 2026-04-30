@@ -1,119 +1,175 @@
-/* ============ NAV TOGGLE ============ */
-const navToggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
+// --- 1. INITIALIZATION & UTILITIES ---
 
-navToggle?.addEventListener("click", () => navLinks.classList.toggle("open"));
+// Function to refresh icons globally (Lucide)
+const refreshIcons = () => lucide.createIcons();
 
-navLinks
-  ?.querySelectorAll("a")
-  .forEach((a) =>
-    a.addEventListener("click", () => navLinks.classList.remove("open")),
-  );
+// Init icons on load
+refreshIcons();
 
-/* ============ FADE-UP ON SCROLL ============ */
-const io = new IntersectionObserver(
+// Update Footer Year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// --- 2. NAVIGATION ---
+
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", () => {
+  mobileMenu.classList.toggle("open");
+});
+
+// Close menu when a link is clicked
+document.querySelectorAll("#mobileMenu a").forEach((link) => {
+  link.addEventListener("click", () => mobileMenu.classList.remove("open"));
+});
+
+// --- 3. SCROLL ANIMATIONS ---
+
+const scrollObserver = new IntersectionObserver(
   (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add("in");
-        io.unobserve(e.target);
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in");
+        scrollObserver.unobserve(entry.target);
       }
     });
   },
   { threshold: 0.12 },
 );
 
-document.querySelectorAll(".fade-up").forEach((el) => io.observe(el));
+// Observe all elements with .fade-up
+document
+  .querySelectorAll(".fade-up")
+  .forEach((el) => scrollObserver.observe(el));
 
-/* ============ LIVE QUOTE API ============ */
+// --- 4. PROJECTS DYNAMIC RENDERING ---
+
+const projects = [
+  {
+    title: "E-Commerce Dashboard UI",
+    desc: "An analytics dashboard for managing products, orders, and revenue with charts and filters.",
+    stack: ["ASP.NET MVC", "C#", "SQL Server", "Chart.js"],
+    cover: "E-COM",
+  },
+  {
+    title: "Task Management Web App",
+    desc: "Kanban-style task tracker with drag-and-drop, deadlines, and team collaboration.",
+    stack: ["JavaScript", "REST API", "HTML/CSS"],
+    cover: "TASKS",
+  },
+  {
+    title: "Weather App (API-based)",
+    desc: "Real-time weather forecasts powered by a public API with location search and 7-day view.",
+    stack: ["JavaScript", "Fetch API", "CSS"],
+    cover: "WEATHER",
+  },
+  {
+    title: "Portfolio Template Design",
+    desc: "Reusable, responsive portfolio template with smooth scroll and accessible markup.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    cover: "FOLIO",
+  },
+];
+
+const grid = document.getElementById("projectsGrid");
+
+projects.forEach((p, i) => {
+  const el = document.createElement("article");
+  el.className = "project-card card-glow fade-up";
+  el.innerHTML = `
+    <div class="project-img">
+      ${p.cover}
+      <span class="project-num">0${i + 1}</span>
+      <div class="project-arrow"><i data-lucide="arrow-up-right"></i></div>
+    </div>
+    <div class="project-body">
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <div class="tech-tags">${p.stack.map((s) => `<span class="tag">${s}</span>`).join("")}</div>
+      <div class="project-links">
+        <a href="#" target="_blank" class="primary">Live Demo <i data-lucide="external-link"></i></a>
+        <a href="#" target="_blank">GitHub <i data-lucide="github"></i></a>
+      </div>
+    </div>`;
+  grid.appendChild(el);
+  scrollObserver.observe(el);
+});
+
+// Refresh icons once after all projects are added
+refreshIcons();
+
+// --- 5. LIVE API DEMO (Quotes) ---
+
+const quoteBox = document.getElementById("quoteBox");
 const quoteText = document.getElementById("quoteText");
 const quoteAuthor = document.getElementById("quoteAuthor");
-const newQuoteBtn = document.getElementById("newQuote");
+const refreshBtn = document.getElementById("refreshQuote");
 
 async function loadQuote() {
-  quoteText.textContent = "Loading...";
-  quoteAuthor.textContent = "—";
+  refreshBtn.disabled = true;
+
+  // Visual feedback: fade out
+  quoteBox.style.opacity = "0.4";
+  quoteText.textContent = "Fetching inspiration...";
 
   try {
-    const r = await fetch(
-      "https://api.quotable.io/random?tags=technology|wisdom|inspirational",
-    );
-    if (!r.ok) throw new Error("quotable failed");
+    const response = await fetch("https://dummyjson.com/quotes/random");
+    if (!response.ok) throw new Error("Fetch failed");
 
-    const d = await r.json();
-    quoteText.textContent = '"' + d.content + '"';
-    quoteAuthor.textContent = "— " + d.author;
-  } catch {
-    try {
-      const r2 = await fetch("https://dummyjson.com/quotes/random");
-      const d2 = await r2.json();
-
-      quoteText.textContent = '"' + d2.quote + '"';
-      quoteAuthor.textContent = "— " + d2.author;
-    } catch {
-      quoteText.textContent =
-        '"The best way to predict the future is to invent it."';
-      quoteAuthor.textContent = "— Alan Kay";
-    }
+    const data = await response.json();
+    quoteText.textContent = `"${data.quote}"`;
+    quoteAuthor.textContent = `— ${data.author}`;
+  } catch (error) {
+    quoteText.textContent = "Could not fetch a quote. Please try again.";
+    quoteAuthor.textContent = "";
+  } finally {
+    // Visual feedback: fade in
+    quoteBox.style.opacity = "1";
+    refreshBtn.disabled = false;
+    refreshIcons();
   }
 }
 
-newQuoteBtn?.addEventListener("click", loadQuote);
-loadQuote();
+refreshBtn.addEventListener("click", loadQuote);
+loadQuote(); // Initial load
 
-/* ============ CONTACT FORM (EmailJS) ============ */
-// To enable real email sending:
-// 1. Sign up at https://www.emailjs.com
-// 2. Add this script to index.html <head>:
-//    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-// 3. Replace the placeholders below with your IDs.
+// --- 6. CONTACT FORM (EmailJS Integration) ---
 
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-const RECEIVER_EMAIL = "lungwaselihle@gmail.com";
+const contactForm = document.getElementById("contact-form");
 
-const form = document.getElementById("contactForm");
-const formStatus = document.getElementById("formStatus");
+contactForm.addEventListener("submit", function (event) {
+  event.preventDefault();
 
-form?.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  const status = document.getElementById("formStatus");
+  const btn = contactForm.querySelector("button");
+  const originalContent = btn.innerHTML;
 
-  const data = Object.fromEntries(new FormData(form));
+  // IDs from your EmailJS Dashboard
+  const serviceID = "service_zj1d45d";
+  const templateID = "template_grw6f9r";
 
-  formStatus.className = "";
-  formStatus.textContent = "Sending...";
+  btn.disabled = true;
+  btn.innerHTML = "Sending...";
 
-  const usingDemo =
-    EMAILJS_SERVICE_ID.startsWith("YOUR_") || typeof emailjs === "undefined";
+  emailjs.sendForm(serviceID, templateID, this).then(
+    () => {
+      btn.innerHTML = "Success!";
+      status.innerHTML = `<div class="ok" style="color: #10b981; margin-top: 1rem;">✓ Message sent successfully. I'll get back to you soon.</div>`;
+      contactForm.reset();
 
-  try {
-    if (usingDemo) {
-      await new Promise((r) => setTimeout(r, 700));
-    } else {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: data.name,
-          from_email: data.email,
-          message: data.message,
-          to_email: RECEIVER_EMAIL,
-        },
-        { publicKey: EMAILJS_PUBLIC_KEY },
-      );
-    }
-
-    formStatus.className = "ok";
-    formStatus.textContent =
-      "✓ Message sent successfully. I'll get back to you soon.";
-    form.reset();
-  } catch {
-    formStatus.className = "err";
-    formStatus.textContent =
-      "⚠ Something went wrong. Please email me directly.";
-  }
+      // Reset button after 3 seconds
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalContent;
+        refreshIcons();
+      }, 3000);
+    },
+    (err) => {
+      btn.disabled = false;
+      btn.innerHTML = originalContent;
+      status.innerHTML = `<div class="error" style="color: #ef4444; margin-top: 1rem;">✕ Failed to send. Please try again later.</div>`;
+      console.error("EmailJS Error:", err);
+      refreshIcons();
+    },
+  );
 });
-
-/* ============ FOOTER YEAR ============ */
-document.getElementById("year").textContent = new Date().getFullYear();

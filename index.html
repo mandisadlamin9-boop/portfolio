@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
     <title>Lihle Mandisa Lungwase — Software Developer Portfolio</title>
 
@@ -11,258 +11,424 @@
       content="Portfolio of Lihle Mandisa Lungwase, ICT Application Development graduate building efficient, user-focused web and mobile apps with C#, ASP.NET MVC, and JavaScript."
     />
 
-    <!-- Fonts -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,wght@1,400;1,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,wght@1,400;1,500&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Icons -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/lucide-static@latest/font/lucide.css"
-    />
-
-    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- EmailJS SDK Integration -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "dTtwZ6cSHZ9ojwviR",
+        });
+      })();
+    </script>
   </head>
 
   <body>
-    <!-- HERO -->
-    <section id="hero" class="section hero">
-      <div class="hero-inner">
-        <div class="pill fade-up">
-          ✦ Available any tech related opportunities ✦
-        </div>
-
-        <h1 class="fade-up">
-          Lihle Mandisa<br />
-          <span class="serif gradient">Lungwase.</span>
-        </h1>
-
-        <p class="hero-sub fade-up">
-          Software Developer · ICT Application Development Graduate
-        </p>
-
-        <p class="hero-desc fade-up">
-          Crafting efficient, user focused web and mobile applications with
-          <strong>C#</strong>, <strong>ASP.NET MVC</strong>, and
-          <strong>JavaScript</strong>.
-        </p>
-
-        <div class="hero-cta fade-up">
-          <a href="#projects" class="btn btn-primary">View Projects ↓</a>
-          <a href="#contact" class="btn btn-ghost">✉ Contact Me</a>
-          <a href="cv.pdf" target="_blank" rel="noopener" class="btn btn-ghost"
-            >⬇ Download CV</a
-          >
-        </div>
-
-        <div class="scroll-indicator fade-up">
-          <a href="#about">SCROLL<span></span></a>
-        </div>
+    <!-- NAVBAR -->
+    <header class="navbar-wrap">
+      <nav class="navbar">
+        <a href="#hero" class="brand">LM<span>.</span></a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#live">Live API</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#live">Live API</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
       </div>
-    </section>
+    </header>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="big-num">01</div>
+    <main>
+      <!-- HERO -->
+      <section id="hero" class="hero">
+        <div class="bg-mesh"></div>
+        <div class="bg-grid"></div>
+        <div class="bg-noise"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
 
-      <div class="container">
-        <p class="eyebrow fade-up">About</p>
-
-        <h2 class="fade-up">Who <span class="serif gradient">am I.</span></h2>
-
-        <div class="about-grid">
-          <p class="fade-up lead">
-            I'm a passionate software developer with a diploma in ICT
-            Application Development. I specialize in building responsive,
-            scalable, and intuitive applications across web and mobile.
+        <div class="hero-content">
+          <div class="badge fade-up">
+            <i data-lucide="sparkles"></i>
+            Available for junior developer roles · 2025
+          </div>
+          <h1 class="fade-up">
+            <span>Lihle Mandisa</span>
+            <span class="serif text-gradient">Lungwase.</span>
+          </h1>
+          <p class="hero-sub fade-up">
+            Software Developer · ICT Application Development Graduate
           </p>
-
-          <p class="fade-up">
-            I love translating complex problems into clean, maintainable code.
-            My focus is on user-centred design, performance, and writing
-            software that's a joy to maintain. Currently seeking junior
-            developer opportunities to grow with a forward-thinking team.
+          <p class="hero-desc fade-up">
+            Crafting efficient, user-focused web and mobile applications with
+            <span class="accent-primary">C#</span>,
+            <span class="accent-primary">ASP.NET MVC</span>, and
+            <span class="accent-coral">JavaScript</span>.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section">
-      <div class="big-num">02</div>
-
-      <div class="container">
-        <p class="eyebrow fade-up">Skills</p>
-
-        <h2 class="fade-up">
-          Tools I <span class="serif gradient">build with.</span>
-        </h2>
-
-        <div class="skills-grid">
-          <div class="skill-card fade-up">
-            <div class="skill-icon">⚡</div>
-            <h3>C#</h3>
-            <p>OOP, LINQ, async patterns</p>
+          <div class="hero-cta fade-up">
+            <a href="#projects" class="btn btn-primary"
+              >View Projects <i data-lucide="arrow-down"></i
+            ></a>
+            <a href="#contact" class="btn btn-ghost"
+              ><i data-lucide="mail"></i> Contact Me</a
+            >
+            <a href="cv.pdf" download class="btn btn-ghost"
+              ><i data-lucide="download"></i> Download CV</a
+            >
           </div>
-
-          <div class="skill-card fade-up">
-            <div class="skill-icon">🌐</div>
-            <h3>ASP.NET MVC</h3>
-            <p>Server-rendered web apps</p>
-          </div>
-
-          <div class="skill-card fade-up">
-            <div class="skill-icon">🧩</div>
-            <h3>JavaScript</h3>
-            <p>ES6+, DOM, fetch API</p>
-          </div>
-
-          <div class="skill-card fade-up">
-            <div class="skill-icon">🎨</div>
-            <h3>HTML & CSS</h3>
-            <p>Semantic, responsive UIs</p>
-          </div>
-
-          <div class="skill-card fade-up">
-            <div class="skill-icon">🗄️</div>
-            <h3>SQL Server</h3>
-            <p>Queries, joins, schemas</p>
-          </div>
-
-          <div class="skill-card fade-up">
-            <div class="skill-icon">📱</div>
-            <h3>Mobile Dev</h3>
-            <p>Cross-platform basics</p>
-          </div>
-
-          <div class="skill-card fade-up">
-            <div class="skill-icon">🔧</div>
-            <h3>Git & GitHub</h3>
-            <p>Version control workflows</p>
-          </div>
-
-          <div class="skill-card fade-up">
-            <div class="skill-icon">🚀</div>
-            <h3>Netlify</h3>
-            <p>Deployments & CI</p>
+          <div class="scroll-indicator fade-up">
+            <a href="#about">Scroll<span class="line"></span></a>
           </div>
         </div>
-      </div>
-    </section>
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="big-num">03</div>
+      </section>
 
-      <div class="container">
-        <p class="eyebrow fade-up">Projects</p>
-
-        <h2 class="fade-up">
-          Selected <span class="serif gradient">work.</span>
-        </h2>
-
-        <div class="projects-grid">
-          <article class="project fade-up">
-            <div
-              class="project-img"
-              style="background: linear-gradient(135deg, #3b4b7a, #7a5a9b)"
-            >
-              <span class="proj-num">01</span>
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="big-num">01</div>
+        <div class="container narrow">
+          <p class="eyebrow fade-up">About</p>
+          <h2 class="fade-up">
+            A developer focused on
+            <span class="serif text-gradient">clarity</span>, structure, and
+            impact.
+          </h2>
+          <div class="about-grid">
+            <div class="about-text">
+              <p class="fade-up">
+                I'm an ICT Application Development graduate with a strong
+                foundation in software engineering, systems analysis, and
+                database design. I enjoy turning real-world problems into clean,
+                maintainable applications.
+              </p>
+              <p class="fade-up">
+                My core stack includes <strong>C#</strong> and
+                <strong>ASP.NET MVC</strong> on the backend,
+                <strong>JavaScript</strong> on the frontend, and
+                <strong>SQL Server</strong> for data. I follow SDLC and Agile
+                practices to ship reliable software.
+              </p>
+              <p class="fade-up">
+                Currently expanding into full-stack development through IBM and
+                SheCodes programs, while building practical projects that
+                demonstrate end-to-end ownership.
+              </p>
             </div>
-            <div class="project-body">
-              <h3>E-commerce Platform</h3>
-              <p>Full-stack shop with cart, auth and admin dashboard.</p>
-              <div class="tags">
-                <span>ASP.NET MVC</span><span>C#</span><span>SQL Server</span>
+            <aside class="about-card fade-up">
+              <div>
+                <p class="label">Based in</p>
+                <p class="value">South Africa 🇿🇦</p>
               </div>
-              <div class="links">
-                <a
-                  href="https://dancing-longma-7e694a.netlify.app/"
-                  target="_blank"
-                  rel="noopener"
-                  >Live ↗</a
-                >
-                <a href="#" target="_blank" rel="noopener">Code ↗</a>
+              <hr />
+              <div>
+                <p class="label">Focus</p>
+                <p class="value">Full-stack development</p>
               </div>
-            </div>
-          </article>
-
-          <article class="project fade-up">
-            <div
-              class="project-img"
-              style="background: linear-gradient(135deg, #2d6a4f, #74c69d)"
-            >
-              <span class="proj-num">02</span>
-            </div>
-            <div class="project-body">
-              <h3>Task Manager</h3>
-              <p>Drag-and-drop kanban board with realtime updates.</p>
-              <div class="tags">
-                <span>JavaScript</span><span>HTML</span><span>CSS</span>
+              <hr />
+              <div>
+                <p class="label">Status</p>
+                <p class="value"><span class="dot"></span>Open to work</p>
               </div>
-              <div class="links">
-                <a
-                  href="https://lee-forcast-weather-app.netlify.app/"
-                  target="_blank"
-                  rel="noopener"
-                  >Live ↗</a
-                >
-                <a href="#" target="_blank" rel="noopener">Code ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project fade-up">
-            <div
-              class="project-img"
-              style="background: linear-gradient(135deg, #9b5a3c, #e0a86b)"
-            >
-              <span class="proj-num">03</span>
-            </div>
-            <div class="project-body">
-              <h3>Weather Dashboard</h3>
-              <p>Real-time weather using OpenWeather API with charts.</p>
-              <div class="tags">
-                <span>JavaScript</span><span>API</span><span>Chart.js</span>
-              </div>
-              <div class="links">
-                <a
-                  href="https://delicate-entremet-86a245.netlify.app/"
-                  target="_blank"
-                  rel="noopener"
-                  >Live ↗</a
-                >
-                <a href="#" target="_blank" rel="noopener">Code ↗</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project fade-up">
-            <div
-              class="project-img"
-              style="background: linear-gradient(135deg, #1d3557, #457b9d)"
-            >
-              <span class="proj-num">04</span>
-            </div>
-            <div class="project-body">
-              <h3>Portfolio Website</h3>
-              <p>This site — clean, fast, accessible, deployed on Netlify.</p>
-              <div class="tags">
-                <span>HTML</span><span>CSS</span><span>JS</span>
-              </div>
-              <div class="links">
-                <a href="#" target="_blank" rel="noopener">Live ↗</a>
-                <a href="#" target="_blank" rel="noopener">Code ↗</a>
-              </div>
-            </div>
-          </article>
+            </aside>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section section-muted">
+        <div class="big-num left">02</div>
+        <div class="container">
+          <p class="eyebrow fade-up">Skills</p>
+          <h2 class="fade-up">
+            What I work <span class="serif text-gradient">with.</span>
+          </h2>
+          <p class="lead fade-up">
+            A curated stack honed through coursework, workshops, and personal
+            projects.
+          </p>
+          <div class="skills-grid">
+            <div class="skill-card card-glow fade-up">
+              <div class="icon-box"><i data-lucide="code-2"></i></div>
+              <h3>Programming Languages</h3>
+              <ul>
+                <li>C#</li>
+                <li>JavaScript</li>
+                <li>Python</li>
+              </ul>
+            </div>
+            <div class="skill-card card-glow fade-up">
+              <div class="icon-box"><i data-lucide="globe-2"></i></div>
+              <h3>Web Technologies</h3>
+              <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>ASP.NET MVC</li>
+                <li>REST APIs</li>
+              </ul>
+            </div>
+            <div class="skill-card card-glow fade-up">
+              <div class="icon-box"><i data-lucide="wrench"></i></div>
+              <h3>Tools & Platforms</h3>
+              <ul>
+                <li>GitHub</li>
+                <li>Android Studio</li>
+                <li>Cisco Packet Tracer</li>
+              </ul>
+            </div>
+            <div class="skill-card card-glow fade-up">
+              <div class="icon-box"><i data-lucide="layers"></i></div>
+              <h3>Concepts</h3>
+              <ul>
+                <li>SDLC</li>
+                <li>Agile</li>
+                <li>Testing</li>
+                <li>System Design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <div class="big-num">03</div>
+        <div class="container">
+          <p class="eyebrow fade-up">Projects</p>
+          <h2 class="fade-up">
+            Selected <span class="serif text-gradient">work.</span>
+          </h2>
+          <p class="lead fade-up">
+            A glimpse of recent builds — from dashboards to API-driven apps.
+          </p>
+          <div class="projects-grid" id="projectsGrid"></div>
+        </div>
+      </section>
+
+      <!-- LIVE API -->
+      <section id="live" class="section section-muted">
+        <div class="big-num left">04</div>
+        <div class="container narrow">
+          <p class="eyebrow fade-up">Live API Demo</p>
+          <h2 class="fade-up">
+            Real-time data,
+            <span class="serif text-gradient">fetched live.</span>
+          </h2>
+          <p class="lead fade-up">
+            A small demo showing a real public API call with dynamic DOM updates
+            and error handling.
+          </p>
+          <div class="api-card shimmer-border fade-up">
+            <div class="api-blob a"></div>
+            <div class="api-blob b"></div>
+            <div class="api-head">
+              <span class="live-pill"
+                ><span class="ping"><span></span><span></span></span>Live ·
+                dummyjson.com</span
+              >
+              <button id="refreshQuote" class="btn btn-primary small">
+                <i data-lucide="refresh-cw"></i> New Quote
+              </button>
+            </div>
+            <div class="api-body" id="quoteBox">
+              <i data-lucide="quote" class="quote-icon"></i>
+              <blockquote id="quoteText">Loading...</blockquote>
+              <cite id="quoteAuthor">—</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORKSHOPS -->
+      <section class="section">
+        <div class="big-num">05</div>
+        <div class="container">
+          <p class="eyebrow fade-up">Workshop Projects</p>
+          <h2 class="fade-up">
+            SheCodes <span class="serif text-gradient">practice work.</span>
+          </h2>
+          <p class="lead fade-up">
+            Hands-on builds completed during workshops to sharpen frontend
+            fundamentals.
+          </p>
+          <div class="workshops-grid">
+            <div class="workshop-card fade-up">
+              <div class="icon-box small"><i data-lucide="code"></i></div>
+              <p class="title">Weather App</p>
+              <p class="sub">JavaScript · API</p>
+            </div>
+            <div class="workshop-card fade-up">
+              <div class="icon-box small"><i data-lucide="code"></i></div>
+              <p class="title">Landing Page</p>
+              <p class="sub">HTML · CSS</p>
+            </div>
+            <div class="workshop-card fade-up">
+              <div class="icon-box small"><i data-lucide="code"></i></div>
+              <p class="title">JavaScript Mini Projects</p>
+              <p class="sub">Vanilla JS</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education" class="section section-muted">
+        <div class="big-num">06</div>
+        <div class="container">
+          <p class="eyebrow fade-up">Education</p>
+          <h2 class="fade-up">
+            Learning, <span class="serif text-gradient">ongoing.</span>
+          </h2>
+          <div class="edu-grid">
+            <div class="fade-up">
+              <div class="edu-head">
+                <div class="icon-box primary">
+                  <i data-lucide="graduation-cap"></i>
+                </div>
+                <h3>Education</h3>
+              </div>
+              <ul class="timeline">
+                <li>
+                  <span class="dot-tl"></span>
+                  <p class="title">Diploma in ICT — Application Development</p>
+                  <p class="sub">2023 – 2025</p>
+                </li>
+                <li>
+                  <span class="dot-tl"></span>
+                  <p class="title">Higher Certificate in IT</p>
+                  <p class="sub">2022</p>
+                </li>
+              </ul>
+            </div>
+            <div class="fade-up">
+              <div class="edu-head">
+                <div class="icon-box accent"><i data-lucide="award"></i></div>
+                <h3>Certifications</h3>
+              </div>
+              <ul class="cert-list">
+                <li>
+                  <span class="check"><i data-lucide="check"></i></span>Python
+                  Essentials
+                </li>
+                <li>
+                  <span class="check"><i data-lucide="check"></i></span>IBM Full
+                  Stack Developer (In Progress)
+                </li>
+                <li>
+                  <span class="check"><i data-lucide="check"></i></span>SheCodes
+                  (In Progress)
+                </li>
+                <li>
+                  <span class="check"><i data-lucide="check"></i></span>Cisco
+                  Networking Fundamentals
+                </li>
+                <li>
+                  <span class="check"><i data-lucide="check"></i></span>JCI
+                  Hackathon Participant
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="big-num left">07</div>
+        <div class="container">
+          <p class="eyebrow fade-up">Contact</p>
+          <h2 class="fade-up">
+            Let's build <span class="serif text-gradient">something.</span>
+          </h2>
+          <p class="lead fade-up">
+            Open to junior developer roles, collaborations, and freelance work.
+          </p>
+          <div class="contact-grid">
+            <!-- ID updated to match our script -->
+            <form id="contact-form" class="contact-form fade-up">
+              <div class="row">
+                <div>
+                  <label>Name</label>
+                  <input required type="text" name="name" maxlength="100" />
+                </div>
+                <div>
+                  <label>Email</label>
+                  <input required type="email" name="email" maxlength="255" />
+                </div>
+              </div>
+              <div>
+                <label>Message</label>
+                <textarea
+                  required
+                  rows="5"
+                  name="message"
+                  maxlength="2000"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                <i data-lucide="send"></i> Send Message
+              </button>
+              <div id="formStatus"></div>
+            </form>
+            <div class="contact-info fade-up">
+              <a href="mailto:lungwaselihle@gmail.com" class="info-card"
+                ><div class="icon-box"><i data-lucide="mail"></i></div>
+                <div>
+                  <p class="label">Email</p>
+                  <p class="value">lungwaselihle@gmail.com</p>
+                </div></a
+              >
+              <a href="https://github.com" target="_blank" class="info-card"
+                ><div class="icon-box"><i data-lucide="github"></i></div>
+                <div>
+                  <p class="label">GitHub</p>
+                  <p class="value">View profile</p>
+                </div></a
+              >
+              <a href="https://netlify.com" target="_blank" class="info-card"
+                ><div class="icon-box"><i data-lucide="globe"></i></div>
+                <div>
+                  <p class="label">Netlify</p>
+                  <p class="value">Deployments</p>
+                </div></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Lihle Mandisa Lungwase</p>
+      <p class="mono">Designed & built with care.</p>
+    </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
