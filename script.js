@@ -145,7 +145,7 @@ contactForm.addEventListener("submit", function (event) {
   const originalContent = btn.innerHTML;
 
   // IDs from your EmailJS Dashboard
-  const serviceID = "service_zj1d45d";
+  const serviceID = "service_44gbowp";
   const templateID = "template_grw6f9r";
 
   btn.disabled = true;
