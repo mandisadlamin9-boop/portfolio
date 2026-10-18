@@ -123,26 +123,64 @@
           </h2>
           <div class="about-grid">
             <div class="about-text">
-              <p class="fade-up">
-                I recently completed my SheCodes certificates and the Google AI
-                Essentials course, and I am currently working through the FNB
-                App Academy and an AI Acceleration Program while completing a
-                one month full stack internship with ProHub STACK, wrapping up
-                on the 8th of September.
-              </p>
-              <p class="fade-up">
-                Alongside coursework, I build practical projects that show end
-                to end ownership, from small JavaScript apps to AI assisted
-                tools, and I have picked up a lot of new skills along the way,
-                including Python and hands on prompt engineering.
-              </p>
-              <p class="fade-up">
-                I'm a member of the <strong>Women in Tech</strong> and
-                <strong>Women in AI</strong> communities. I recently had the
-                privilege of attending Women in Tech South Africa's "Unlocking
-                Your FutHer" event in KZN, hosted by BET Software in partnership
-                with Canva.
-              </p>
+              <div class="about-chat fade-up" id="aboutChat">
+                <div class="chat-head">
+                  <span class="chat-dot"></span>
+                  <div>
+                    <h3>Ask me anything</h3>
+                    <p>
+                      My journey, projects, skills and what I'm looking for.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="chat-chips" id="chatChips">
+                  <button type="button" class="chat-chip">
+                    My tech journey
+                  </button>
+                  <button type="button" class="chat-chip">Best project</button>
+                  <button type="button" class="chat-chip">Skills</button>
+                  <button type="button" class="chat-chip">Open to work?</button>
+                </div>
+
+                <div class="chat-log" id="chatLog" aria-live="polite">
+                  <div class="chat-msg bot">
+                    Hi, I'm Lihle's assistant. She's an ICT graduate from DUT
+                    building full stack projects. Ask me anything, or tap a
+                    question above.
+                  </div>
+                </div>
+
+                <form class="chat-form" id="chatForm">
+                  <input
+                    id="chatInput"
+                    type="text"
+                    placeholder="Ask a question"
+                    autocomplete="off"
+                    maxlength="300"
+                  />
+                  <button
+                    type="submit"
+                    class="btn btn-primary small"
+                    aria-label="Send"
+                  >
+                    <i data-lucide="arrow-up"></i>
+                  </button>
+                </form>
+              </div>
+
+              <div class="about-stats fade-up">
+                <div class="about-stat">
+                  <b data-count="5" data-suffix="+">5+</b><span>Projects</span>
+                </div>
+                <div class="about-stat">
+                  <b data-count="15" data-suffix="+">15+</b
+                  ><span>Certificates</span>
+                </div>
+                <div class="about-stat">
+                  <b data-count="1">1</b><span>Internship</span>
+                </div>
+              </div>
             </div>
             <div class="about-photo-wrap fade-up">
               <img
@@ -150,29 +188,6 @@
                 alt="Lihle Mandisa Lungwase"
                 class="about-photo"
               />
-              <div class="about-photo-overlay"></div>
-              <div class="about-badges">
-                <div class="about-badge">
-                  <i data-lucide="graduation-cap"></i>
-                  <span>Diploma in ICT, Application Development</span>
-                </div>
-                <div class="about-badge">
-                  <i data-lucide="award"></i>
-                  <span>Higher Certificate in IT</span>
-                </div>
-                <div class="about-badge">
-                  <i data-lucide="badge-check"></i>
-                  <span id="certCountText">Certifications</span>
-                </div>
-                <div class="about-badge">
-                  <i data-lucide="map-pin"></i>
-                  <span>Based in Durban, open to relocate</span>
-                </div>
-                <div class="about-badge">
-                  <span class="dot"></span>
-                  <span>Open to work</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -190,56 +205,25 @@
             A curated stack honed through coursework, internships, and personal
             projects.
           </p>
-          <div class="skills-grid">
-            <div class="skill-card card-glow fade-up">
-              <div class="icon-box"><i data-lucide="code-2"></i></div>
-              <h3>Programming Languages</h3>
-              <ul>
-                <li>C#</li>
-                <li>JavaScript</li>
-                <li>Python</li>
-              </ul>
+          <div class="spotlight fade-up" id="stackSpotlight">
+            <div class="spot-stage">
+              <div class="spot-halo" id="spotHalo"></div>
+              <img
+                class="spot-logo"
+                id="spotLogo"
+                alt=""
+                width="96"
+                height="96"
+              />
             </div>
-            <div class="skill-card card-glow fade-up">
-              <div class="icon-box"><i data-lucide="globe-2"></i></div>
-              <h3>Web Technologies</h3>
-              <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>ASP.NET MVC</li>
-                <li>REST APIs</li>
-              </ul>
-            </div>
-            <div class="skill-card card-glow fade-up">
-              <div class="icon-box"><i data-lucide="sparkles"></i></div>
-              <h3>AI & Prompting</h3>
-              <ul>
-                <li>Prompt Engineering</li>
-                <li>AI Assisted Development</li>
-                <li>No-Code AI Tools</li>
-              </ul>
-            </div>
-            <div class="skill-card card-glow fade-up">
-              <div class="icon-box"><i data-lucide="wrench"></i></div>
-              <h3>Tools & Platforms</h3>
-              <ul>
-                <li>GitHub</li>
-                <li>Vercel</li>
-                <li>Netlify</li>
-                <li>Render</li>
-                <li>Android Studio</li>
-              </ul>
-            </div>
-            <div class="skill-card card-glow fade-up">
-              <div class="icon-box"><i data-lucide="layers"></i></div>
-              <h3>Concepts</h3>
-              <ul>
-                <li>SDLC</li>
-                <li>Agile</li>
-                <li>Testing</li>
-                <li>System Design</li>
-              </ul>
-            </div>
+            <span class="spot-tag" id="spotGroup"></span>
+            <h3 class="spot-name" id="spotName"></h3>
+            <p class="spot-desc" id="spotDesc"></p>
+            <div
+              class="spot-rail"
+              id="spotRail"
+              aria-label="My tech stack"
+            ></div>
           </div>
         </div>
       </section>
@@ -256,7 +240,7 @@
             A glimpse of recent builds, from AI powered tools to full stack
             internship work.
           </p>
-          <div class="projects-grid" id="projectsGrid"></div>
+          <div class="projects-wrap" id="projectsGrid"></div>
         </div>
       </section>
 
@@ -273,7 +257,9 @@
             through. Click a certificate to view it full size or download it.
           </p>
           <div class="cert-tabs" id="certTabs"></div>
-          <div class="cert-groups" id="certGallery"></div>
+          <div class="cert-viewer fade-up" id="certViewer"></div>
+          <div class="cert-thumbs fade-up" id="certThumbs"></div>
+          <div class="cert-progress" id="certProgress"></div>
         </div>
       </section>
 
