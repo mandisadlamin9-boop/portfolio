@@ -355,73 +355,86 @@ const projects = [
 const projectsGrid = document.getElementById("projectsGrid");
 
 if (projectsGrid) {
-  const byTitle = (t) => projects.find((p) => p.title === t);
-  const featured = byTitle("CartCraft");
-  const gridItems = ["Shelf Life", "PetCare Management System", "Aura"].map(
-    byTitle,
-  );
+  // order of the rows (remove a title to hide that project)
+  const order = [
+    "CartCraft",
+    "Shelf Life",
+    "PetCare Management System",
+    "Aura",
+    "Weather App",
+    "Recipe Magic",
+  ];
+  // one-line descriptions shown in the rows
+  const blurbs = {
+    CartCraft: "E-commerce storefront with Stripe checkout and an admin panel.",
+    "Weather App": "Search the current weather for any location.",
+    "Recipe Magic": "Generate a recipe from any ingredient or dish.",
+  };
+  const list = order
+    .map((t) => projects.find((p) => p.title === t))
+    .filter(Boolean);
 
-  const tagsHtml = (p) =>
-    `<div class="tech-tags">${p.stack.map((s) => `<span class="tag">${s}</span>`).join("")}</div>`;
-  const imgHtml = (p) =>
-    p.image
-      ? `<img src="${encodeURI(p.image)}" alt="${p.title} preview" loading="lazy" />`
-      : `<span class="proj-cover">${p.cover}</span>`;
-  const demoBtn = (p) =>
-    p.liveUrl
-      ? `<a class="btn btn-primary small" href="${p.liveUrl}" target="_blank" rel="noopener">Live demo <i data-lucide="external-link"></i></a>`
-      : `<span class="tag">Coming soon</span>`;
+  const rowsHtml = list
+    .map(
+      (p, i) => `
+    <div class="proj-row fade-up${i === 0 ? " active" : ""}" data-i="${i}" tabindex="0" style="transition-delay:${i * 0.08}s">
+      <span class="proj-num">${String(i + 1).padStart(2, "0")}</span>
+      <div class="proj-main">
+        <h3>${p.title}</h3>
+        <p>${blurbs[p.title] || p.short || p.desc}</p>
+      </div>
+      <div class="proj-links">
+        ${p.codeUrl ? `<a href="${p.codeUrl}" target="_blank" rel="noopener">Code</a>` : ""}
+        ${p.liveUrl ? `<a href="${p.liveUrl}" target="_blank" rel="noopener">Live <i data-lucide="arrow-up-right"></i></a>` : ""}
+      </div>
+    </div>`,
+    )
+    .join("");
 
-  // 1. Featured project
-  if (featured) {
-    const el = document.createElement("div");
-    el.className = "proj-feature fade-up";
-    el.innerHTML = `
-      <div class="proj-media">${imgHtml(featured)}</div>
-      <div class="proj-feature-body">
-        <span class="proj-flag">Featured</span>
-        <h3>${featured.title}</h3>
-        <p>${featured.desc}</p>
-        ${tagsHtml(featured)}
-        <div class="proj-actions">${demoBtn(featured)}</div>
-      </div>`;
-    projectsGrid.appendChild(el);
-    scrollObserver.observe(el);
-  }
+  const imagesHtml = list
+    .map(
+      (p, i) =>
+        `<img class="${i === 0 ? "on" : ""}" src="${encodeURI(p.image)}" alt="${p.title} preview" loading="lazy" />`,
+    )
+    .join("");
 
-  // 2. Three hover cards
-  const grid = document.createElement("div");
-  grid.className = "proj-grid";
-  gridItems.forEach((p, i) => {
-    const cell = document.createElement("div");
-    cell.className = "proj-cell fade-up";
-    cell.style.transitionDelay = `${i * 0.15}s`;
-    cell.innerHTML = `
-      <article class="proj-card">
-        <div class="proj-media">
-          ${imgHtml(p)}
-          <div class="proj-overlay">
-            <p>${p.short || p.desc}</p>
-            ${demoBtn(p)}
-          </div>
-        </div>
-        <div class="proj-info">
-          <h3>${p.title}</h3>
-          ${tagsHtml(p)}
-        </div>
-      </article>`;
-    // phones have no hover: tap a card to reveal its description
-    cell.addEventListener("click", (e) => {
-      if (e.target.closest("a")) return;
-      grid
-        .querySelectorAll(".proj-cell.tap")
-        .forEach((c) => c !== cell && c.classList.remove("tap"));
-      cell.classList.toggle("tap");
+  const tagsHtml = list
+    .map(
+      (p, i) =>
+        `<div class="tech-tags proj-capitem${i === 0 ? " on" : ""}">${p.stack.map((s) => `<span class="tag">${s}</span>`).join("")}</div>`,
+    )
+    .join("");
+
+  projectsGrid.innerHTML = `
+    <div class="proj-rows">
+      <div class="proj-list">${rowsHtml}</div>
+      <div class="proj-side">
+        <div class="proj-preview">${imagesHtml}</div>
+        <div class="proj-caption">${tagsHtml}</div>
+      </div>
+    </div>`;
+
+  const setActive = (i) => {
+    projectsGrid
+      .querySelectorAll(".proj-row")
+      .forEach((r, n) => r.classList.toggle("active", n === i));
+    projectsGrid
+      .querySelectorAll(".proj-preview img")
+      .forEach((m, n) => m.classList.toggle("on", n === i));
+    projectsGrid
+      .querySelectorAll(".proj-capitem")
+      .forEach((c, n) => c.classList.toggle("on", n === i));
+  };
+
+  projectsGrid.querySelectorAll(".proj-row").forEach((row) => {
+    const i = Number(row.dataset.i);
+    row.addEventListener("mouseenter", () => setActive(i));
+    row.addEventListener("focusin", () => setActive(i));
+    row.addEventListener("click", (e) => {
+      if (!e.target.closest("a")) setActive(i);
     });
-    grid.appendChild(cell);
-    scrollObserver.observe(cell);
+    scrollObserver.observe(row);
   });
-  projectsGrid.appendChild(grid);
 }
 
 refreshIcons();
@@ -591,14 +604,6 @@ const certificates = [
     file: null,
     type: null,
   },
-  {
-    group: "Currently Studying",
-    title: "Full Stack Internship",
-    issuer: "ProHub STACK",
-    status: "In Progress",
-    file: null,
-    type: null,
-  },
 ];
 
 // Update the "Certifications" badge in About with a live count
@@ -619,105 +624,29 @@ const certThumbs = document.getElementById("certThumbs");
 const certTabs = document.getElementById("certTabs");
 const certProgress = document.getElementById("certProgress");
 
-if (certViewer && certThumbs && certTabs) {
+if (certIndex) {
   const done = certificates.filter((c) => c.status === "Completed");
-  const previewOf = (c) => encodeURI(c.thumb || c.file);
-  let list = done;
-  let certIdx = 0;
-  let certTimer = null;
-  let userTookOver = false;
 
   function openCert(c) {
     if (c.type === "image") openCertLightbox(c.file, c.title);
     else window.open(encodeURI(c.file), "_blank");
   }
 
-  function showCert(i) {
-    certIdx = i;
-    const c = list[i];
-    certViewer.innerHTML = `
-      <button class="cert-preview" type="button" aria-label="View ${c.title}">
-        <img src="${previewOf(c)}" alt="${c.title} certificate" />
-      </button>
-      <div class="cert-details">
-        <span class="cert-status">${c.status}</span>
-        <h3>${c.title}</h3>
-        <p class="cert-issuer">${c.issuer}</p>
-        <div class="cert-actions">
-          <button class="btn btn-primary small" type="button" data-act="view"><i data-lucide="eye"></i> View certificate</button>
-          <a class="btn btn-ghost small" href="${encodeURI(c.file)}" download><i data-lucide="download"></i> Download</a>
-        </div>
-      </div>`;
-    certViewer.classList.remove("cert-swap");
-    void certViewer.offsetWidth;
-    certViewer.classList.add("cert-swap");
-    certViewer
-      .querySelector('[data-act="view"]')
-      .addEventListener("click", () => openCert(c));
-    certViewer
-      .querySelector(".cert-preview")
-      .addEventListener("click", () => openCert(c));
-    certThumbs
-      .querySelectorAll(".cert-thumb")
-      .forEach((b, k) => b.classList.toggle("on", k === i));
-    refreshIcons();
-  }
-
-  function buildThumbs() {
-    certThumbs.innerHTML = "";
-    list.forEach((c, i) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "cert-thumb";
-      b.title = c.title;
-      b.setAttribute("aria-label", c.title);
-      b.innerHTML = `<img src="${previewOf(c)}" alt="" loading="lazy" />`;
-      b.addEventListener("click", () => {
-        userTookOver = true;
-        stopCerts();
-        showCert(i);
-      });
-      certThumbs.appendChild(b);
-    });
-    showCert(0);
-  }
-
-  function startCerts() {
-    stopCerts();
-    if (prefersReducedMotion || userTookOver) return;
-    certTimer = setInterval(() => showCert((certIdx + 1) % list.length), 4500);
-  }
-  function stopCerts() {
-    clearInterval(certTimer);
-  }
-
-  ["All", ...new Set(done.map((c) => c.group))].forEach((g, i) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "cert-tab" + (i === 0 ? " active" : "");
-    btn.textContent = CERT_LABELS[g] || g;
-    btn.addEventListener("click", () => {
-      certTabs
-        .querySelectorAll(".cert-tab")
-        .forEach((t) => t.classList.remove("active"));
-      btn.classList.add("active");
-      list = g === "All" ? done : done.filter((c) => c.group === g);
-      userTookOver = true;
-      stopCerts();
-      buildThumbs();
-    });
-    certTabs.appendChild(btn);
+  done.forEach((c, i) => {
+    const row = document.createElement("button");
+    row.type = "button";
+    row.className = "cert-row fade-up";
+    row.style.transitionDelay = `${(i % 8) * 0.06}s`;
+    row.setAttribute("aria-label", `View ${c.title}`);
+    row.innerHTML = `
+      <span class="cert-num">${String(i + 1).padStart(2, "0")}</span>
+      <span class="cert-name">${c.title}</span>
+      <span class="cert-by">${c.issuer}</span>
+      <i data-lucide="arrow-up-right"></i>`;
+    row.addEventListener("click", () => openCert(c));
+    certIndex.appendChild(row);
+    scrollObserver.observe(row);
   });
-
-  buildThumbs();
-
-  // auto-advance only while on screen, pause on hover, stop once the visitor takes over
-  new IntersectionObserver(
-    (entries) => (entries[0].isIntersecting ? startCerts() : stopCerts()),
-    { threshold: 0.3 },
-  ).observe(certViewer);
-  certViewer.addEventListener("mouseenter", stopCerts);
-  certViewer.addEventListener("mouseleave", startCerts);
 
   if (certProgress) {
     const inProgress = certificates.filter((c) => c.status !== "Completed");
@@ -729,6 +658,7 @@ if (certViewer && certThumbs && certTabs) {
           .join("");
     }
   }
+  refreshIcons();
 }
 
 // --- 6. CERTIFICATE LIGHTBOX (images only — PDFs open in a new tab instead) ---
@@ -950,4 +880,71 @@ if (contactForm) {
       if (chip) ask(chip.textContent);
     });
   }
+})();
+
+// --- ABOUT VIDEO ---
+(() => {
+  const wrap = document.querySelector(".about-photo-wrap");
+  const video = document.getElementById("aboutVideo");
+  const playBtn = document.getElementById("vidPlay");
+  const muteBtn = document.getElementById("vidMute");
+  if (!wrap || !video) return;
+
+  const sync = () => {
+    wrap.classList.toggle("is-paused", video.paused);
+    wrap.classList.toggle("is-unmuted", !video.muted);
+  };
+  const toggle = () => {
+    if (video.paused) video.play().catch(() => {});
+    else video.pause();
+  };
+
+  video.addEventListener("click", toggle);
+  playBtn.addEventListener("click", toggle);
+  muteBtn.addEventListener("click", () => {
+    video.muted = !video.muted;
+    sync();
+  });
+  video.addEventListener("play", sync);
+  video.addEventListener("pause", sync);
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    video.pause();
+  }
+  sync();
+})();
+
+// --- SECTION TRANSITIONS ---
+(() => {
+  // headings slide in from the left, like the hero
+  document
+    .querySelectorAll(
+      ".section .eyebrow.fade-up, .section h2.fade-up, .section .lead.fade-up",
+    )
+    .forEach((el) => el.classList.add("from-left"));
+
+  // everything else enters one after another
+  document.querySelectorAll(".section .fade-up").forEach((el) => {
+    if (el.style.transitionDelay) return;
+    const siblings = [...el.parentElement.children].filter((c) =>
+      c.classList.contains("fade-up"),
+    );
+    const i = siblings.indexOf(el);
+    if (i > 0) el.style.transitionDelay = `${Math.min(i, 5) * 0.12}s`;
+  });
+
+  // section divider line and big number
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("sec-in");
+        sectionObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.2 },
+  );
+  document
+    .querySelectorAll(".section")
+    .forEach((s) => sectionObserver.observe(s));
 })();

@@ -35,7 +35,7 @@ PROJECTS
 CERTIFICATIONS AND ACTIVITIES
 - SheCodes: Web Development and AI.
 - Google AI Essentials (Coursera).
-- Cisco: Python Essentials.
+- Cisco: Introduction to Packet Tracer, Linux and Networking Essentials.
 - ProStackHub Fullstack Development Internship.
 - FNB App Academy: AI Acceleration Program.
 - JCI Hackathon Programme: participant.
